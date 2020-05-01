@@ -1,0 +1,180 @@
+
+automate_mining_planet = {
+    available = {
+        has_designation = col_mining
+        owner = { 
+            NOR = { 
+                has_authority = auth_machine_intelligence
+                has_authority = auth_hive_mind 
+            }
+        }
+
+        OR = {
+            free_jobs < 2
+            free_housing < 1
+            free_building_slots > 0
+        }
+    }
+
+    prio_districts = {
+        district_mining
+    }
+
+    buildings = {
+        1 = {
+            building = building_capital
+            available = {
+                always = yes
+            }
+        }
+
+        2 = {
+            building = building_clone_vats
+            available = {
+                always = yes
+            }
+        }
+
+        3 = {
+            building = building_robot_assembly_plant
+            available = {
+                OR = {
+                    NOR = {
+                        has_ascension_perk = ap_engineered_evolution
+                    }
+
+                    AND = {
+                        has_building = has_building = building_clone_vats
+                        has_building = building_holo_theatres
+                    }
+                }
+            }
+        }
+        
+        4 = {
+            building = building_holo_theatres
+            available = {
+                OR = {
+                    has_building = building_robot_assembly_plant
+                    has_building = building_clone_vats
+                }
+                num_buildings = { type = building_holo_theatres value < 1 }
+                num_buildings = { type = building_hyper_entertainment_forum value < 1 }
+            }
+        }
+
+        5 = {
+            building = building_mineral_purification_plant
+            available = {
+                has_building = building_holo_theatres
+            }
+        }
+
+        6 = {
+            building = building_commercial_zone
+            available = {
+                has_building = building_mineral_purification_plant
+                free_district_slots = 0
+                free_housing > 0
+                free_jobs < 5
+            }
+        }   
+
+        7 = {
+            building = building_crystal_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_crystal_plant value < 1 }
+            }
+        }
+
+
+        8 = {
+            building = building_chemical_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_chemical_plant value < 1 }
+            }
+        }
+
+        9 = {
+            building = building_refinery
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_refinery value < 1 }
+            }
+        }
+
+        10 = {
+            building = building_crystal_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_crystal_plant value < 2 }
+            }
+        }
+
+        11 = {
+            building = building_chemical_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_chemical_plant value < 2 }
+            }
+        }
+
+        12 = {
+            building = building_refinery
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_refinery value < 2 }
+            }
+        }
+
+        13 = {
+            building = building_crystal_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_crystal_plant value < 3 }
+            }
+        }
+
+        14 = {
+            building = building_chemical_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_chemical_plant value < 3 }
+            }
+        }
+
+        15 = {
+            building = building_refinery
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_refinery value < 3 }
+            }
+        }
+
+        16 = {
+            building = building_crystal_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_crystal_plant value < 4 }
+            }
+        }
+
+        17 = {
+            building = building_chemical_plant
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_chemical_plant value < 4 }
+            }
+        }
+
+        18 = {
+            building = building_refinery
+            available = {
+                has_building = building_mineral_purification_plant
+                num_buildings = { type = building_refinery value < 4 }
+            }
+        }
+    }
+}

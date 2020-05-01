@@ -1,0 +1,140 @@
+
+automate_habitat_fortress_planet = {
+	available = {
+		has_designation = col_habitat_fortress
+		owner = {
+			NOR = {
+				has_authority = auth_machine_intelligence
+				has_authority = auth_hive_mind
+			}
+		}
+		
+        OR = {
+            free_jobs < 2
+            free_housing < 1
+            free_building_slots > 0
+        }
+	}
+
+	prio_districts = {
+		district_hab_housing
+	}
+
+	buildings = {
+		1 = {
+			building = building_hab_capital
+			available = {
+				always = yes
+			}
+		}
+
+
+        2 = {
+            building = building_stronghold
+            available = {
+                always = yes
+            }
+        }
+
+        3 = {
+            building = building_holo_theatres
+            available = {
+            	has_building = building_stronghold
+                num_buildings = { type = building_holo_theatres value < 1 }
+                num_buildings = { type = building_hyper_entertainment_forum value < 1 }
+            }
+        }
+
+        4 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        5 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        6 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        7 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        8 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        9 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        10 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        11 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        12 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        13 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        14 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        15 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+        16 = {
+            building = building_stronghold
+            available = {
+            	has_building = building_holo_theatres
+            }
+        }
+
+	}
+}
