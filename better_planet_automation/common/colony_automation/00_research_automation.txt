@@ -9,11 +9,10 @@ automate_research_planet = {
 			}
 		}
 
-		OR = {
-			free_jobs < 2
-			free_housing < 1
-			free_building_slots > 0
-		}
+        OR = {
+            free_jobs <= 2
+            free_housing <= 2
+        }
 	}
 
 	prio_districts = {
@@ -28,42 +27,32 @@ automate_research_planet = {
 		}
 
 		2 = {
-			building = building_clone_vats
-			available = {
-				always = yes
-			}
-		}
-
-		3 = {
             building = building_holo_theatres
             available = {
-                OR = {
-                    has_building = building_robot_assembly_plant
-                    has_building = building_clone_vats
-                }
                 num_buildings = { type = building_holo_theatres value < 1 }
                 num_buildings = { type = building_hyper_entertainment_forum value < 1 }
             }
         }
 
+
 		4 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+            	num_buildings = { type = any value >= 2}
 			}
 		}
 
 		5 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 		
 		6 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -71,7 +60,7 @@ automate_research_planet = {
 		7 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -79,7 +68,7 @@ automate_research_planet = {
 		8 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -87,7 +76,7 @@ automate_research_planet = {
 		9 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -95,7 +84,7 @@ automate_research_planet = {
 		10 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -103,7 +92,7 @@ automate_research_planet = {
 		11 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -111,7 +100,7 @@ automate_research_planet = {
 		12 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -119,14 +108,14 @@ automate_research_planet = {
 		13 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
 		14 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
@@ -134,14 +123,14 @@ automate_research_planet = {
 		15 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 
 		16 = {
 			building = building_research_lab_1
 			available = {
-				always = yes
+				num_buildings = { type = any value >= 2}
 			}
 		}
 	}

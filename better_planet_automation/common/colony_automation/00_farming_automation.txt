@@ -1,4 +1,4 @@
-
+ 
 automate_farming_planet = {
     available = {
         has_designation = col_farming
@@ -10,9 +10,8 @@ automate_farming_planet = {
         }
 
         OR = {
-            free_jobs < 2
-            free_housing < 1
-            free_building_slots > 0
+            free_jobs <= 2
+            free_housing <= 2
         }
     }
 
@@ -29,13 +28,6 @@ automate_farming_planet = {
         }
 
         2 = {
-            building = building_clone_vats
-            available = {
-                always = yes
-            }
-        }
-
-        3 = {
             building = building_robot_assembly_plant
             available = {
                 OR = {
@@ -51,7 +43,7 @@ automate_farming_planet = {
             }
         }
         
-        4 = {
+        3 = {
             building = building_holo_theatres
             available = {
                 OR = {
@@ -63,9 +55,17 @@ automate_farming_planet = {
             }
         }
 
+        4 = {
+            building = building_clone_vats
+            available = {
+                always = yes
+            }
+        }
+
         5 = {
             building = building_food_processing_facility
             available = {
+                num_buildings = { type = any value >= 3}
                 has_building = building_holo_theatres
             }
         }

@@ -1,0 +1,137 @@
+
+automate_foundry_planet = {
+	available = {
+		has_designation = col_foundry
+		owner = { 
+			NOR = { 
+				has_authority = auth_machine_intelligence
+				has_authority = auth_hive_mind 
+			}
+		}
+
+        OR = {
+            free_jobs <= 2
+            free_housing <= 2
+        }
+	}
+
+	prio_districts = {
+	}
+
+	buildings = {
+		1 = {
+			building = building_capital
+			available = {
+				always = yes
+			}
+		}
+
+		2 = {
+            building = building_holo_theatres
+            available = {
+                num_buildings = { type = building_holo_theatres value < 1 }
+                num_buildings = { type = building_hyper_entertainment_forum value < 1 }
+            }
+        }
+
+
+		4 = {
+			building = building_foundry_1
+			available = {
+            	num_buildings = { type = any value >= 2}
+			}
+		}
+
+		5 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+		
+		6 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		7 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		8 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		9 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		10 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		11 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		12 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		13 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+		14 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+
+		15 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+
+		16 = {
+			building = building_foundry_1
+			available = {
+				num_buildings = { type = any value >= 2}
+			}
+		}
+	}
+}
