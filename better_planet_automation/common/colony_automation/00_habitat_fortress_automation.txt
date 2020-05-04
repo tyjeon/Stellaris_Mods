@@ -16,7 +16,7 @@ automate_habitat_fortress_planet = {
 	}
 
 	prio_districts = {
-		district_hab_housing
+		district_hab_cultural
 	}
 
 	buildings = {

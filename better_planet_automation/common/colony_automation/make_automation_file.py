@@ -15,7 +15,7 @@ FOUNDRY_DICT = {"filename" : "00_foundry_automation.txt", "words" : ["automate_f
 
 MINING_HABITAT_DICT = {"filename" : "00_habitat_mining_automation.txt", "words" : ["district_hab_mining", "mining", "building_mineral_purification_plant"]}
 GENERATOR_HABITAT_DICT = {"filename" : "00_habitat_energy_automation.txt", "words" : ["district_hab_energy", "energy", "building_energy_grid"]}
-FORTRESS_HABITAT_DICT = {"filename" : "00_habitat_fortress_automation.txt", "words" : ["district_hab_housing", "fortress", "building_stronghold"]}
+FORTRESS_HABITAT_DICT = {"filename" : "00_habitat_fortress_automation.txt", "words" : ["district_hab_cultural", "fortress", "building_stronghold"]}
 
 
 def make_automation_file(original_dict, *target_dicts):
