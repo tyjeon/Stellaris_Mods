@@ -9,18 +9,6 @@ basic = {
 		key = district_city
 		weight = {
 			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					owner = { is_ai = no }
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
 			modifier = {
 				factor = 2
 				owner = {
@@ -124,54 +112,28 @@ basic = {
 			weight = 1
 
 			modifier = {
-				factor = 1000
-				AND = {
-					owner = { is_ai = no}
-					NOR = {
-						has_designation = col_capital
-						has_designation = col_rural
-					}
-	                num_buildings = { type = building_holo_theatres value < 1 }
-	                num_buildings = { type = building_hyper_entertainment_forum value < 1 }
-	                num_pops >= 10
-				}
-			}
-
-			modifier = {
 				factor = 4
-				AND = {
-					owner = { is_ai = yes}
-					free_amenities < 0
-				}
+				free_amenities < 0
 			}
 
 			modifier = {
 				factor = 10
-				AND = {
-					owner = { is_ai = yes}
-					free_amenities < -10
-				}
+				free_amenities < -10
 			}
 
 			modifier = {
 				factor = 0
-				AND = {
-					owner = { is_ai = yes}
-					free_amenities >= 0
-				}
+				free_amenities >= 0
 			}
 
 			# No one to work it anyway
 			modifier = {
 				factor = 0
-				AND = {
-					owner = { is_ai = yes}
-					NOT = {
-						any_owned_pop = { 
-							OR = { 
-								is_unemployed = yes 
-								has_job = servant 
-							}
+				NOT = {
+					any_owned_pop = { 
+						OR = { 
+							is_unemployed = yes 
+							has_job = servant 
 						}
 					}
 				}
@@ -179,13 +141,10 @@ basic = {
 
 			modifier = {
 				factor = 0
-				AND = {
-					owner = { is_ai = yes}
-					controller = {
-						has_monthly_income = {
-							resource = energy
-							value < 2
-						}
+				controller = {
+					has_monthly_income = {
+						resource = energy
+						value < 2
 					}
 				}
 			}
@@ -365,60 +324,8 @@ basic = {
 			weight = 1
 
 			modifier = {
-				factor = 1000
-				AND = {
-					owner = { is_ai = no}
-					OR = {
-						has_designation = col_mining
-						has_designation = col_farming
-						has_designation = col_generator
-					}
-	                OR = {
-	                    NOR = {
-	                        has_ascension_perk = ap_engineered_evolution
-	                    }
-
-	                    AND = {
-	                    	has_building = building_clone_vats
-	                        has_building = building_holo_theatres
-	                    }
-	                }
-				}
-			}
-
-			modifier = {
 				factor = 0
-				AND = {
-					owner = { is_ai = yes}
-					free_housing <= 0
-				}
-			}
-		}
-	}
-
-	building = {
-		key = building_clone_vats
-		weight = {
-			weight = 1
-
-			modifier = {
-				factor = 1000
-				AND = {
-					owner = { is_ai = no}
-					OR = {
-						has_designation = col_mining
-						has_designation = col_farming
-						has_designation = col_generator
-					}
-				}
-			}
-
-			modifier = {
-				factor = 0
-				AND = {
-					owner = { is_ai = yes}
-					free_housing <= 0
-				}
+				free_housing <= 0
 			}
 		}
 	}
@@ -596,31 +503,13 @@ basic = {
 balanced = {
 
 	ai_weight = {
-		weight = 0
+		weight = 100
 	}
 
 	district = {
 		key = district_generator
 		weight = {
 			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					has_designation = col_generator
-				}
-			}
-
 			modifier = 
 			{
 				factor = 3
@@ -666,26 +555,6 @@ balanced = {
 		key = district_mining
 		weight = {
 			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					owner = { is_ai = no }
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
-			modifier = { # automation :  지구 건설
-				factor = 10000
-				AND = {
-					owner = { is_ai = no }
-					has_designation = col_mining
-				}
-			}
-
 			modifier = {
 				factor = 3
 				owner = { 
@@ -730,26 +599,6 @@ balanced = {
 		key = district_farming
 		weight = {
 			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					owner = { is_ai = no }
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					owner = { is_ai = no }
-					has_designation = col_generator
-				}
-			}
-
 			modifier = {
 				factor = 3
 				owner = { 
@@ -799,90 +648,6 @@ balanced = {
 							has_job = servant 
 						}
 					}
-				}
-			}
-		}
-	}
-
-	# automation
-	district = {
-		key = district_habitat_mining
-
-		weight = {
-			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					owner = { is_ai = no }
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					owner = { is_ai = no }
-					has_designation = col_habitat_mining
-				}
-			}
-		}
-	}
-
-	# automation
-	district = {
-		key = district_hab_cultural
-
-		weight = {
-			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					owner = { is_ai = no }
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					owner = { is_ai = no }
-					has_designation = col_habitat_fortress
-				}
-			}
-		}
-	}
-
-	# automation
-	district = {
-		key = district_hab_energy
-
-		weight = {
-			weight = 1
-
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					owner = { is_ai = no }
-					0R = {
-						has_designation = col_capital # 수도는 자동화 예외.
-						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-					}
-				}
-			}
-
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					owner = { is_ai = no }
-					has_designation = col_habitat_energy
 				}
 			}
 		}
@@ -935,7 +700,6 @@ balanced = {
 		key = building_mineral_purification_plant
 		weight = {
 			weight = 1
-
 			modifier = 
 			{
 				factor = 5
@@ -1683,41 +1447,27 @@ production = {
 		key = district_generator
 		weight = {
 			weight = 1
-			modifier = {
-				factor = 3
-				owner = { 
-					has_monthly_income = {
-						resource = energy
-						value < 8
-					}
-				}
-			}
 
-			modifier = {
-				factor = 2
-				free_housing < 0
-			}
-
-			modifier = {
-				factor = 3
-				any_owned_pop = { 
-					OR = { 
-						is_unemployed = yes 
-						has_job = servant 
-					}
-				}
-			}
-
-			# No one to work it anyway
-			modifier = {
+			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				0R = {
+					has_designation = col_capital # 수도는 자동화 예외.
+					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				}
+			}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
+				}
+			}
+
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
+					has_designation = col_generator
 				}
 			}
 		}
@@ -1727,41 +1477,27 @@ production = {
 		key = district_mining
 		weight = {
 			weight = 1
-			modifier = {
-				factor = 3
-				owner = { 
-					has_monthly_income = {
-						resource = minerals
-						value < 0
-					}
-				}
-			}
 
-			modifier = {
-				factor = 2
-				free_housing < 0
-			}
-
-			modifier = {
-				factor = 3
-				any_owned_pop = { 
-					OR = { 
-						is_unemployed = yes 
-						has_job = servant 
-					}
-				}
-			}
-
-			# No one to work it anyway
-			modifier = {
+			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				0R = {
+					has_designation = col_capital # 수도는 자동화 예외.
+					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				}
+			}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
+				}
+			}
+
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
+					has_designation = col_mining
 				}
 			}
 		}
@@ -1771,28 +1507,27 @@ production = {
 		key = district_farming
 		weight = {
 			weight = 1
-			modifier = {
-				factor = 3
-				owner = { 
-					has_monthly_income = {
-						resource = food
-						value < 5
-					}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				0R = {
+					has_designation = col_capital # 수도는 자동화 예외.
+					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
 				}
 			}
 
-			modifier = {
-				factor = 2
-				free_housing < 0
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
+				}
 			}
 
-			modifier = {
-				factor = 3
-				any_owned_pop = { 
-					OR = { 
-						is_unemployed = yes 
-						has_job = servant 
-					}
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
+					has_designation = col_farming
 				}
 			}
 
@@ -1806,166 +1541,172 @@ production = {
 					has_monthly_income = {
 						resource = food
 						value >= 0
-					}
-				}
-			}
-
-			# No one to work it anyway
-			modifier = {
-				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
 					}
 				}
 			}
 		}
 	}
 
-	building = {
-		key = building_hydroponics_farm
+	district = {
+		key = district_habitat_mining
 		weight = {
 			weight = 1
-			modifier = {
-				factor = 5
-				owner = { 
-					has_monthly_income = {
-						resource = food
-						value < 5
-					}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				0R = {
+					has_designation = col_capital # 수도는 자동화 예외.
+					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
 				}
 			}
 
-			modifier = { # MI and Synth. Asc. don't build food unless they need it
+			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				owner = { 
-					OR = {
-						has_authority = auth_machine_intelligence
-						has_country_flag = synthetic_empire
-					}
-					has_monthly_income = {
-						resource = food
-						value >= 0
-					}
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
 				}
 			}
 
-			# No one to work it anyway
-			modifier = {
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
+					has_designation = col_habitat_mining
+				}
+			}
+		}
+	}
+
+	district = {
+		key = district_hab_cultural
+		weight = {
+			weight = 1
+
+			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				0R = {
+					has_designation = col_capital # 수도는 자동화 예외.
+					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				}
+			}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
+				}
+			}
+
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
+					has_designation = col_habitat_fortress
+				}
+			}
+		}
+	}
+
+	district = {
+		key = district_hab_energy
+		weight = {
+			weight = 1
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				0R = {
+					has_designation = col_capital # 수도는 자동화 예외.
+					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				}
+			}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
+				}
+			}
+
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
+					has_designation = col_habitat_energy
 				}
 			}
 		}
 	}
 
 	building = {
-		key = building_food_processing_facility
+		key = building_clone_vats
 		weight = {
 			weight = 1
+
 			modifier = {
-				factor = 5
-				owner = { 
-					has_monthly_income = {
-						resource = food
-						value < 5
-					}
+				factor = 0
+				NOR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
 				}
 			}
 
-			modifier = { # MI and Synth. Asc. don't build food unless they need it
-				factor = 0
-				owner = { 
-					OR = {
-						has_authority = auth_machine_intelligence
-						has_country_flag = synthetic_empire
-					}
-					has_monthly_income = {
-						resource = food
-						value >= 0
-					}
-				}
-			}
-
-			# No one to work it anyway
 			modifier = {
-				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
-				}
+				factor = 1016
+				always = yes
 			}
 		}
 	}
 
 	building = {
-		key = building_food_processing_center
+		key = building_robot_assembly_plant
 		weight = {
 			weight = 1
-			modifier = {
-				factor = 5
-				owner = { 
-					has_monthly_income = {
-						resource = food
-						value < 5
-					}
-				}
-			}
 
-			modifier = { # MI and Synth. Asc. don't build food unless they need it
-				factor = 0
-				owner = { 
-					OR = {
-						has_authority = auth_machine_intelligence
-						has_country_flag = synthetic_empire
-					}
-					has_monthly_income = {
-						resource = food
-						value >= 0
-					}
-				}
-			}
-
-			# No one to work it anyway
 			modifier = {
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				NOR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
 				}
 			}
 
 			modifier = {
-				factor = 0
-				controller = {
-					OR = {
-						has_monthly_income = {
-							resource = volatile_motes
-							value < 1
-						}
-						has_monthly_income = {
-							resource = energy
-							value < 1
-						}
-					}
+				factor = 1015
+				AND = {
+	                OR = {
+	                    NOR = {
+	                        has_ascension_perk = ap_engineered_evolution
+	                    }
+
+	                    AND = {
+	                    	has_building = building_clone_vats
+	                        has_building = building_holo_theatres
+	                    }
+	                }
 				}
+			}
+		}
+	}
+
+
+	building = {
+		key = building_holo_theatres
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				OR = {
+	                num_buildings = { type = building_holo_theatres value > 0 }
+	                num_buildings = { type = building_hyper_entertainment_forum value > 0 }
+				}
+			}
+
+			modifier = {
+				factor = 1014
+		        num_buildings = { type = any value >= 2}
 			}
 		}
 	}
@@ -1974,25 +1715,39 @@ production = {
 		key = building_mineral_purification_plant
 		weight = {
 			weight = 1
+
 			modifier = {
-				factor = 5
-				owner = { 
-					has_monthly_income = {
-						resource = minerals
-						value < 5
-					}
+				factor = 0
+				NOR = {
+					has_designation = col_mining
 				}
 			}
 
-			# No one to work it anyway
+			modifier = {
+				factor = 1013
+				always = yes
+			}
+		}
+	}
+
+	building = {
+		key = building_mineral_purification_hub
+		weight = {
+			weight = 1
+
 			modifier = {
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
+				NOR = {
+					has_designation = col_mining
+				}
+			}
+
+			modifier = {
+				factor = 1013
+				AND = {
+					has_monthly_income = {
+						resource = volatile_motes
+						value >= 1
 					}
 				}
 			}
@@ -2003,27 +1758,15 @@ production = {
 		key = building_energy_grid
 		weight = {
 			weight = 1
-			modifier = {
-				factor = 5
-				owner = { 
-					has_monthly_income = {
-						resource = energy
-						value < 10
-					}
-				}
-			}
-
-			# No one to work it anyway
+			
 			modifier = {
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				NOR = {
+					has_designation = col_generator
 				}
+			}
+			modifier = {
+				factor = 1014
 			}
 		}
 	}
@@ -2032,181 +1775,293 @@ production = {
 		key = building_energy_nexus
 		weight = {
 			weight = 1
+
 			modifier = {
-				factor = 5
-				owner = { 
+				factor = 0
+				NOR = {
+					has_designation = col_generator
+				}
+			}
+
+			modifier = {
+				factor = 1013
+				AND = {
 					has_monthly_income = {
-						resource = energy
-						value < 10
-					}
-				}
-			}
-
-			# No one to work it anyway
-			modifier = {
-				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
-				}
-			}
-
-			modifier = {
-				factor = 0
-				controller = {
-					OR = {
-						has_monthly_income = {
-							resource = exotic_gases
-							value < 1
-						}
-						has_monthly_income = {
-							resource = energy
-							value < 1
-						}
+						resource = exotic_gases
+						value >= 1
 					}
 				}
 			}
 		}
 	}
 
+
 	building = {
-		key = building_bio_reactor
+		key = building_food_processing_facility
+		weight = {
+			weight = 1
+			
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_farming
+				}
+			}
+
+			modifier = { # MI and Synth. Asc. don't build food unless they need it
+				factor = 0
+				owner = { 
+					OR = {
+						has_authority = auth_machine_intelligence
+						has_country_flag = synthetic_empire
+					}
+					has_monthly_income = {
+						resource = food
+						value >= 0
+					}
+				}
+			}
+
+			modifier = {
+				factor = 1013
+				always = yes
+			}
+		}
+	}
+
+	building = {
+		key = building_food_processing_center
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_farming
+				}
+			}
+
+			modifier = {
+				factor = 1013
+				AND = {
+					has_monthly_income = {
+						resource = volatile_motes
+						value >= 1
+					}
+				}
+			}
+		}
+	}
+
+
+	building = {
+		key = building_commercial_zone
+		weight = {
+			weight = 1
+			
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
+				}
+			}
+
+			modifier = { # No more houses.
+				factor = 0
+				AND = {
+					free_district_slots = 0
+					free_housing < 2
+				}
+			}
+
+			modifier = {
+				factor = 1012
+				AND = {
+					free_district_slots = 0
+					free_building_slots = 1
+					free_jobs < 3
+				}
+			}
+		}
+	}
+
+	building = {
+		key = building_crystal_plant
 		weight = {
 			weight = 1
 			modifier = {
-				factor = 5
-				owner = { 
-					has_monthly_income = {
-						resource = energy
-						value < 10
-					}
+				factor = 0
+				NOR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
+				}
+			}
 
-					has_monthly_income = {
-						resource = food
-						value > 50
-					}
+			modifier = { # No more houses.
+				factor = 0
+				AND = {
+					free_district_slots = 0
+					free_housing < 2
 				}
 			}
 
 			modifier = {
-				factor = 0
-				owner = {
-					has_monthly_income = {
-						resource = food
-						value < 50
-					}
-				}
-			}
-
-			# No one to work it anyway
-			modifier = {
-				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				factor = 100
+				AND = {
+					num_buildings = { type = any value >= 4}
 				}
 			}
 
 			modifier = {
-				factor = 0
-				controller = {
-					has_monthly_income = {
-						resource = food
-						value < 25
-					}
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_crystal_plant value < 4}
 				}
 			}
-		}
-	}
 
-	building = {
-		key = building_mote_harvesters
-		weight = {
-			weight = 10
-
-			# No one to work it anyway
 			modifier = {
-				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_crystal_plant value < 3}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_crystal_plant value < 2}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_crystal_plant value < 1}
 				}
 			}
 		}
 	}
 
 	building = {
-		key = building_gas_extractors
+		key = building_chemical_plant
 		weight = {
-			weight = 10
-
-			# No one to work it anyway
+			weight = 1
 			modifier = {
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				NOR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
+				}
+			}
+
+			modifier = { # No more houses.
+				factor = 0
+				AND = {
+					free_district_slots = 0
+					free_housing < 2
+				}
+			}
+
+			modifier = {
+				factor = 100
+				AND = {
+					num_buildings = { type = any value >= 4}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_chemical_plant value < 4}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_chemical_plant value < 3}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_chemical_plant value < 2}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_chemical_plant value < 1}
 				}
 			}
 		}
 	}
 
 	building = {
-		key = building_crystal_mines
+		key = building_refinery
 		weight = {
-			weight = 10
-
-			# No one to work it anyway
+			weight = 1
 			modifier = {
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				NOR = {
+					has_designation = col_mining
+					has_designation = col_farming
+					has_designation = col_generator
 				}
 			}
-		}
-	}
 
-	building = {
-		key = building_betharian_power_plant
-		weight = {
-			weight = 10
-
-			# No one to work it anyway
-			modifier = {
+			modifier = { # No more houses.
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+				AND = {
+					free_district_slots = 0
+					free_housing < 2
+				}
+			}
+
+			modifier = {
+				factor = 100
+				AND = {
+					num_buildings = { type = any value >= 4}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_refinery value < 4}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_refinery value < 3}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_refinery value < 2}
+				}
+			}
+
+			modifier = {
+				factor = 1.1
+				AND = {
+					num_buildings = { type = building_refinery value < 1}
 				}
 			}
 		}
 	}
 }
+
 
 #############
 # MANUFACTURING FOCUS
