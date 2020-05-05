@@ -9,6 +9,18 @@ basic = {
 		key = district_city
 		weight = {
 			weight = 1
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					owner = { is_ai = no }
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+					}
+				}
+			}
+
 			modifier = {
 				factor = 2
 				owner = {
@@ -112,28 +124,54 @@ basic = {
 			weight = 1
 
 			modifier = {
+				factor = 1000
+				AND = {
+					owner = { is_ai = no}
+					NOR = {
+						has_designation = col_capital
+						has_designation = col_rural
+					}
+	                num_buildings = { type = building_holo_theatres value < 1 }
+	                num_buildings = { type = building_hyper_entertainment_forum value < 1 }
+	                num_pops >= 10
+				}
+			}
+
+			modifier = {
 				factor = 4
-				free_amenities < 0
+				AND = {
+					owner = { is_ai = yes}
+					free_amenities < 0
+				}
 			}
 
 			modifier = {
 				factor = 10
-				free_amenities < -10
+				AND = {
+					owner = { is_ai = yes}
+					free_amenities < -10
+				}
 			}
 
 			modifier = {
 				factor = 0
-				free_amenities >= 0
+				AND = {
+					owner = { is_ai = yes}
+					free_amenities >= 0
+				}
 			}
 
 			# No one to work it anyway
 			modifier = {
 				factor = 0
-				NOT = {
-					any_owned_pop = { 
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
+				AND = {
+					owner = { is_ai = yes}
+					NOT = {
+						any_owned_pop = { 
+							OR = { 
+								is_unemployed = yes 
+								has_job = servant 
+							}
 						}
 					}
 				}
@@ -141,10 +179,13 @@ basic = {
 
 			modifier = {
 				factor = 0
-				controller = {
-					has_monthly_income = {
-						resource = energy
-						value < 2
+				AND = {
+					owner = { is_ai = yes}
+					controller = {
+						has_monthly_income = {
+							resource = energy
+							value < 2
+						}
 					}
 				}
 			}
@@ -324,8 +365,60 @@ basic = {
 			weight = 1
 
 			modifier = {
+				factor = 1000
+				AND = {
+					owner = { is_ai = no}
+					OR = {
+						has_designation = col_mining
+						has_designation = col_farming
+						has_designation = col_generator
+					}
+	                OR = {
+	                    NOR = {
+	                        has_ascension_perk = ap_engineered_evolution
+	                    }
+
+	                    AND = {
+	                    	has_building = building_clone_vats
+	                        has_building = building_holo_theatres
+	                    }
+	                }
+				}
+			}
+
+			modifier = {
 				factor = 0
-				free_housing <= 0
+				AND = {
+					owner = { is_ai = yes}
+					free_housing <= 0
+				}
+			}
+		}
+	}
+
+	building = {
+		key = building_clone_vats
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 1000
+				AND = {
+					owner = { is_ai = no}
+					OR = {
+						has_designation = col_mining
+						has_designation = col_farming
+						has_designation = col_generator
+					}
+				}
+			}
+
+			modifier = {
+				factor = 0
+				AND = {
+					owner = { is_ai = yes}
+					free_housing <= 0
+				}
 			}
 		}
 	}
@@ -503,20 +596,28 @@ basic = {
 balanced = {
 
 	ai_weight = {
-		weight = 100
+		weight = 0
 	}
 
 	district = {
 		key = district_generator
 		weight = {
 			weight = 1
-			
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+					}
+				}
+			}
+
+			modifier = { # automation :  지구 건설
 				factor = 100
 				AND = {
 					has_designation = col_generator
-					owner = { is_ai = no }
 				}
 			}
 
@@ -546,13 +647,11 @@ balanced = {
 				}
 			}
 
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
 			# No one to work it anyway
 			modifier = {
 				factor = 0
-				NOR = {
-					owner = { is_ai = no }
-					any_owned_pop = {
+				NOT = {
+					any_owned_pop = { 
 						OR = { 
 							is_unemployed = yes 
 							has_job = servant 
@@ -568,12 +667,22 @@ balanced = {
 		weight = {
 			weight = 1
 
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
-				factor = 100
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
 				AND = {
-					has_designation = col_mining
 					owner = { is_ai = no }
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+					}
+				}
+			}
+
+			modifier = { # automation :  지구 건설
+				factor = 10000
+				AND = {
+					owner = { is_ai = no }
+					has_designation = col_mining
 				}
 			}
 
@@ -602,13 +711,11 @@ balanced = {
 				}
 			}
 
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
 			# No one to work it anyway
 			modifier = {
 				factor = 0
-				NOR = {
-					owner = { is_ai = no }
-					any_owned_pop = {
+				NOT = {
+					any_owned_pop = { 
 						OR = { 
 							is_unemployed = yes 
 							has_job = servant 
@@ -623,13 +730,23 @@ balanced = {
 		key = district_farming
 		weight = {
 			weight = 1
-			
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					owner = { is_ai = no }
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+					}
+				}
+			}
+
+			modifier = { # automation :  지구 건설
 				factor = 100
 				AND = {
-					has_designation = col_farming
 					owner = { is_ai = no }
+					has_designation = col_generator
 				}
 			}
 
@@ -672,13 +789,11 @@ balanced = {
 				}
 			}
 
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
 			# No one to work it anyway
 			modifier = {
 				factor = 0
-				NOR = {
-					owner = { is_ai = no }
-					any_owned_pop = {
+				NOT = {
+					any_owned_pop = { 
 						OR = { 
 							is_unemployed = yes 
 							has_job = servant 
@@ -691,65 +806,27 @@ balanced = {
 
 	# automation
 	district = {
-		key = district_hab_energy
+		key = district_habitat_mining
 
 		weight = {
 			weight = 1
 
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
-				factor = 100
-				AND = {
-					has_designation = col_habitat_energy
-					owner = { is_ai = no }
-				}
-			}
-
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
-			# No one to work it anyway
-			modifier = {
+			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				NOR = {
+				AND = {
 					owner = { is_ai = no }
-					any_owned_pop = {
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
 					}
 				}
 			}
-		}
-	}
 
-	# automation
-	district = {
-		key = col_habitat_mining
-
-		weight = {
-			weight = 1
-
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
+			modifier = { # automation :  지구 건설
 				factor = 100
 				AND = {
-					has_designation = district_hab_mining
 					owner = { is_ai = no }
-				}
-			}
-
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
-			# No one to work it anyway
-			modifier = {
-				factor = 0
-				NOR = {
-					owner = { is_ai = no }
-					any_owned_pop = {
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+					has_designation = col_habitat_mining
 				}
 			}
 		}
@@ -762,27 +839,22 @@ balanced = {
 		weight = {
 			weight = 1
 
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
-				factor = 100
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
 				AND = {
-					has_designation = col_habitat_fortress
 					owner = { is_ai = no }
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+					}
 				}
 			}
 
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
-			# No one to work it anyway
-			modifier = {
-				factor = 0
-				NOR = {
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
 					owner = { is_ai = no }
-					any_owned_pop = {
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+					has_designation = col_habitat_fortress
 				}
 			}
 		}
@@ -795,32 +867,27 @@ balanced = {
 		weight = {
 			weight = 1
 
-			# automation : 자원 특화 행성일 경우 해당 자원 지구를 우선한다.
-			modifier = {
-				factor = 100
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
 				AND = {
-					has_designation = col_habitat_energy
 					owner = { is_ai = no }
+					0R = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+					}
 				}
 			}
 
-			# automation : 플레이어는 조건에서 제외하여 실업자가 있을 때 다른 지구가 지어지는 상황을 막는다.
-			# No one to work it anyway
-			modifier = {
-				factor = 0
-				NOR = {
+			modifier = { # automation :  지구 건설
+				factor = 100
+				AND = {
 					owner = { is_ai = no }
-					any_owned_pop = {
-						OR = { 
-							is_unemployed = yes 
-							has_job = servant 
-						}
-					}
+					has_designation = col_habitat_energy
 				}
 			}
 		}
 	}
-	
+
 	building = {
 		key = building_hydroponics_farm
 		weight = {
@@ -868,6 +935,7 @@ balanced = {
 		key = building_mineral_purification_plant
 		weight = {
 			weight = 1
+
 			modifier = 
 			{
 				factor = 5
