@@ -9,6 +9,10 @@ basic = {
 		key = district_city
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 			modifier = {
 				factor = 2
 				owner = {
@@ -79,6 +83,10 @@ basic = {
 		key = building_luxury_residence
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 			modifier = {
 				factor = 2
 				free_housing < 0
@@ -110,6 +118,10 @@ basic = {
 		key = building_holo_theatres
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 
 			modifier = {
 				factor = 4
@@ -155,6 +167,10 @@ basic = {
 		key = building_hyper_entertainment_forum
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 
 			modifier = {
 				factor = 4
@@ -206,6 +222,10 @@ basic = {
 		key = building_clinic
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 
 			modifier = {
 				factor = 4
@@ -246,6 +266,10 @@ basic = {
 		key = building_hospital
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 
 			modifier = {
 				factor = 4
@@ -322,6 +346,10 @@ basic = {
 		key = building_robot_assembly_plant
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 
 			modifier = {
 				factor = 0
@@ -346,6 +374,10 @@ basic = {
 		key = building_precinct_house
 		weight = {
 			weight = 1
+			modifier = { # No automation.
+				factor = 0
+				owner = {is_ai = no}
+			}
 			modifier = {
 				factor = 0
 				planet_crime < 10
@@ -1444,16 +1476,45 @@ production = {
 	}
 
 	district = {
+		key = district_city
+		weight = {
+			weight = 1
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				OR = {
+					OR = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural
+					}
+				}
+				
+			}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				AND = {
+					free_housing >= 2
+					free_jobs >= 2
+				}
+			}
+		}
+	}
+
+	district = {
 		key = district_generator
 		weight = {
 			weight = 1
 
 			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				0R = {
-					has_designation = col_capital # 수도는 자동화 예외.
-					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				OR = {
+					OR = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural
+					}
 				}
+				
 			}
 
 			modifier = { # automation :  지구 건설 제한
@@ -1466,9 +1527,7 @@ production = {
 
 			modifier = { # automation :  지구 건설
 				factor = 100
-				AND = {
-					has_designation = col_generator
-				}
+				has_designation = col_generator
 			}
 		}
 	}
@@ -1480,10 +1539,13 @@ production = {
 
 			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				0R = {
-					has_designation = col_capital # 수도는 자동화 예외.
-					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				OR = {
+					OR = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural
+					}
 				}
+				
 			}
 
 			modifier = { # automation :  지구 건설 제한
@@ -1510,10 +1572,13 @@ production = {
 
 			modifier = { # automation :  지구 건설 제한
 				factor = 0
-				0R = {
-					has_designation = col_capital # 수도는 자동화 예외.
-					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
+				OR = {
+					OR = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural
+					}
 				}
+				
 			}
 
 			modifier = { # automation :  지구 건설 제한
@@ -1547,109 +1612,104 @@ production = {
 		}
 	}
 
-	district = {
-		key = district_habitat_mining
-		weight = {
-			weight = 1
+    district = {
+        key = district_hab_mining
+        weight = {
+            weight = 1
 
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				0R = {
-					has_designation = col_capital # 수도는 자동화 예외.
-					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-				}
-			}
+            modifier = { # automation :  지구 건설 제한
+                factor = 0
+                OR = {
+                    OR = {
+                        has_designation = col_capital # 수도는 자동화 예외.
+                        has_designation = col_rural
+                    }
+                }
+                
+            }
 
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					free_housing >= 2
-					free_jobs >= 2
-				}
-			}
+            modifier = { # automation :  지구 건설 제한
+                factor = 0
+                AND = {
+                    free_housing >= 2
+                    free_jobs >= 2
+                }
+            }
 
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					has_designation = col_habitat_mining
-				}
-			}
-		}
-	}
+            modifier = { # automation :  지구 건설
+                factor = 100
+                AND = {
+                    has_designation = col_habitat_mining
+                }
+            }
+        }
+    }
 
-	district = {
-		key = district_hab_cultural
-		weight = {
-			weight = 1
+    district = {
+        key = district_hab_housing
+        weight = {
+            weight = 1
 
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				0R = {
-					has_designation = col_capital # 수도는 자동화 예외.
-					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-				}
-			}
+            modifier = { # automation :  지구 건설 제한
+                factor = 0
+                OR = {
+                    OR = {
+                        has_designation = col_capital # 수도는 자동화 예외.
+                        has_designation = col_rural
+                    }
+                }
+            }
 
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					free_housing >= 2
-					free_jobs >= 2
-				}
-			}
+            modifier = { # automation :  지구 건설 제한
+                factor = 0
+                free_housing >= 2
+            }
 
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					has_designation = col_habitat_fortress
-				}
-			}
-		}
-	}
+            modifier = { # automation :  지구 건설
+                factor = 100
+                AND = {
+                    has_designation = col_habitat_fortress
+                }
+            }
+        }
+    }
 
-	district = {
-		key = district_hab_energy
-		weight = {
-			weight = 1
+    district = {
+        key = district_hab_energy
+        weight = {
+            weight = 1
 
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				0R = {
-					has_designation = col_capital # 수도는 자동화 예외.
-					has_designation = col_rural # 지방 행성은 자동화를 원하지 않는 행성 전용.
-				}
-			}
+            modifier = { # automation :  지구 건설 제한
+                factor = 0
+                OR = {
+                    OR = {
+                        has_designation = col_capital # 수도는 자동화 예외.
+                        has_designation = col_rural
+                    }
+                }
+            }
 
-			modifier = { # automation :  지구 건설 제한
-				factor = 0
-				AND = {
-					free_housing >= 2
-					free_jobs >= 2
-				}
-			}
+            modifier = { # automation :  지구 건설 제한
+                factor = 0
+                AND = {
+                    free_housing >= 2
+                    free_jobs >= 2
+                }
+            }
 
-			modifier = { # automation :  지구 건설
-				factor = 100
-				AND = {
-					has_designation = col_habitat_energy
-				}
-			}
-		}
-	}
+            modifier = { # automation :  지구 건설
+                factor = 100
+                AND = {
+                    has_designation = col_habitat_energy
+                }
+            }
+        }
+    }
 
 	building = {
 		key = building_clone_vats
 		weight = {
 			weight = 1
-
-			modifier = {
-				factor = 0
-				NOR = {
-					has_designation = col_mining
-					has_designation = col_farming
-					has_designation = col_generator
-				}
-			}
 
 			modifier = {
 				factor = 1016
@@ -1665,10 +1725,12 @@ production = {
 
 			modifier = {
 				factor = 0
-				NOR = {
-					has_designation = col_mining
-					has_designation = col_farming
-					has_designation = col_generator
+				OR = {
+					NOR = {
+						has_designation = col_mining
+						has_designation = col_farming
+						has_designation = col_generator
+					}
 				}
 			}
 
@@ -1695,6 +1757,27 @@ production = {
 		key = building_holo_theatres
 		weight = {
 			weight = 1
+
+			modifier = {
+				factor = 0
+				OR = {
+					OR = {
+						has_designation = col_fortress 
+						has_designation = col_habitat_fortress
+					}
+				}
+			}
+
+			modifier = { # automation :  지구 건설 제한
+				factor = 0
+				OR = {
+					OR = {
+						has_designation = col_capital # 수도는 자동화 예외.
+						has_designation = col_rural
+					}
+				}
+			}
+
 
 			modifier = {
 				factor = 0
@@ -1743,11 +1826,11 @@ production = {
 			}
 
 			modifier = {
-				factor = 1013
-				AND = {
+				factor = 0
+				owner = {
 					has_monthly_income = {
 						resource = volatile_motes
-						value >= 1
+						value < 1
 					}
 				}
 			}
@@ -1784,11 +1867,11 @@ production = {
 			}
 
 			modifier = {
-				factor = 1013
-				AND = {
+				factor = 0
+				owner = {
 					has_monthly_income = {
 						resource = exotic_gases
-						value >= 1
+						value < 1
 					}
 				}
 			}
@@ -1842,11 +1925,11 @@ production = {
 			}
 
 			modifier = {
-				factor = 1013
-				AND = {
+				factor = 0
+				owner = {
 					has_monthly_income = {
 						resource = volatile_motes
-						value >= 1
+						value < 1
 					}
 				}
 			}
@@ -1854,7 +1937,7 @@ production = {
 	}
 
 
-	building = {
+	building = { # 1차 자원행성용 상업지구
 		key = building_commercial_zone
 		weight = {
 			weight = 1
@@ -2056,6 +2139,303 @@ production = {
 				factor = 1.1
 				AND = {
 					num_buildings = { type = building_refinery value < 1}
+				}
+			}
+		}
+	}
+
+	building = { # 단조장 행성은 클론 배양소 + 극장 + 단조장으로 구성.
+		key = building_foundry_1
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_foundry
+				}
+			}
+      
+			modifier = {
+				factor = 1010
+				num_buildings = { type = any value >= 2}
+			}
+		}
+	}
+
+	building = { # 단조장 행성은 클론 배양소 + 극장 + 단조장으로 구성.
+		key =  building_foundry_2
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_foundry
+				}
+			}
+
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = volatile_motes
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 단조장 행성은 클론 배양소 + 극장 + 단조장으로 구성.
+		key =  building_foundry_3
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_foundry
+				}
+			}
+
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = volatile_motes
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 행정 행성은 클론 배양소 + 극장 + 행정건물로 구성.
+		key =  building_bureaucratic_1
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_bureau
+				}
+			}
+      
+			modifier = {
+				factor = 1010
+				num_buildings = { type = any value >= 2}
+			}
+		}
+	}
+
+	building = { # 행정 행성은 클론 배양소 + 극장 + 행정건물로 구성.
+		key =  building_bureaucratic_2
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_bureau
+				}
+			}
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = rare_crystals
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 연구 행성은 클론 배양소 + 극장 + 연구건물로 구성.
+		key =  building_research_lab_1
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_research
+				}
+			}
+      
+			modifier = {
+				factor = 1010
+				num_buildings = { type = any value >= 2}
+			}
+		}
+	}
+
+	building = { # 연구 행성은 클론 배양소 + 극장 + 연구건물로 구성.
+		key =  building_research_lab_2
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_research
+				}
+			}
+
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = exotic_gases
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 연구 행성은 클론 배양소 + 극장 + 연구건물로 구성.
+		key =  building_research_lab_3
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_research
+				}
+			}
+
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = exotic_gases
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 요새행성은 요새 + 상업지구(메가플렉스) + Galactic Stock Exchange 로 구성.
+		key =  building_stronghold
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_fortress
+					has_designation = col_habitat_fortress
+				}
+			}
+      
+			modifier = {
+				factor = 1015
+				always = yes
+			}
+		}
+	}
+
+	building = { # 요새행성은 요새 + 상업지구(메가플렉스) + Galactic Stock Exchange 로 구성.
+		key =  building_fortress
+		weight = {
+			weight = 1
+
+			modifier = { # 지구 건설 제한
+				factor = 0
+				NOR = {
+					has_designation = col_fortress
+					has_designation = col_habitat_fortress
+				}
+			}
+      		
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = exotic_gases
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 요새행성은 요새 + 상업지구(메가플렉스) + Galactic Stock Exchange 로 구성.
+		key = building_commercial_zone
+		weight = {
+			weight = 1
+			
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_fortress
+					has_designation = col_habitat_fortress
+				}
+			}
+
+			modifier = {
+				factor = 1016
+				free_jobs <= 1
+			}
+		}
+	}
+
+	building = { # 요새행성은 요새 + 상업지구(메가플렉스) + Galactic Stock Exchange 로 구성.
+		key = building_commercial_megaplex
+		weight = {
+			weight = 1
+			
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_fortress
+					has_designation = col_habitat_fortress
+				}
+			}
+
+			modifier = {
+				factor = 0
+				owner = {
+					has_monthly_income = {
+						resource = rare_crystals
+						value < 1
+					}
+				}
+			}
+		}
+	}
+
+	building = { # 요새행성은 요새 + 상업지구(메가플렉스) + Galactic Stock Exchange 로 구성.
+		key = building_galactic_stock_exchange
+		weight = {
+			weight = 1
+			
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_fortress
+					has_designation = col_habitat_fortress
+				}
+			}
+
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						free_jobs >= 3
+						num_buildings = { type = building_commercial_megaplex value >= 3 }
+						owner = {
+							has_monthly_income = {
+								resource = rare_crystals
+								value < 1
+							}
+						}
+					}
 				}
 			}
 		}
