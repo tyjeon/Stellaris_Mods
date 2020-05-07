@@ -1803,6 +1803,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_mining
+                    has_designation = col_habitat_mining
 				}
 			}
 
@@ -1822,6 +1823,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_mining
+                    has_designation = col_habitat_mining
 				}
 			}
 
@@ -1846,6 +1848,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_generator
+                    has_designation = col_habitat_energy
 				}
 			}
 			modifier = {
@@ -1863,6 +1866,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_generator
+                    has_designation = col_habitat_energy
 				}
 			}
 
@@ -2175,6 +2179,13 @@ production = {
 				}
 			}
 
+            modifier = {
+                factor = 0
+                NOR = {
+                    free_building_slots > 0 # 건물을 지을 슬롯이 없어야 업그레이드
+                }
+            }
+
 			modifier = {
 				factor = 0
 				owner = {
@@ -2199,6 +2210,13 @@ production = {
 				}
 			}
 
+            modifier = {
+                factor = 0
+                NOR = {
+                    free_building_slots > 0 # 건물을 지을 슬롯이 없어야 업그레이드
+                }
+            }
+
 			modifier = {
 				factor = 0
 				owner = {
@@ -2222,7 +2240,14 @@ production = {
 					has_designation = col_bureau
 				}
 			}
-      
+
+            modifier = { # 행정 한계일 때만 건설
+                factor = 0
+                NOT = {
+                    owner = { empire_sprawl_over_cap > 0 }
+                }
+            }
+            
 			modifier = {
 				factor = 1010
 				num_buildings = { type = any value >= 2}
@@ -2241,6 +2266,15 @@ production = {
 					has_designation = col_bureau
 				}
 			}
+
+            modifier = { # 행정 한계일 때만 건설
+                factor = 0
+                NOR = {
+                    owner = { empire_sprawl_over_cap > 0 }
+                    free_building_slots > 0 # 행정 건물을 지을 슬롯이 없어야 업그레이드
+                }
+            }
+
 			modifier = {
 				factor = 0
 				owner = {
@@ -2284,6 +2318,13 @@ production = {
 				}
 			}
 
+            modifier = {
+                factor = 0
+                NOR = {
+                    free_building_slots > 0 # 건물을 지을 슬롯이 없어야 업그레이드
+                }
+            }
+
 			modifier = {
 				factor = 0
 				owner = {
@@ -2308,6 +2349,13 @@ production = {
 				}
 			}
 
+            modifier = {
+                factor = 0
+                NOR = {
+                    free_building_slots > 0 # 건물을 지을 슬롯이 없어야 업그레이드
+                }
+            }
+
 			modifier = {
 				factor = 0
 				owner = {
@@ -2330,6 +2378,8 @@ production = {
 				NOR = {
 					has_designation = col_fortress
 					has_designation = col_habitat_fortress
+                    has_designation = col_habitat_mining
+                    has_designation = col_habitat_energy
 				}
 			}
       
@@ -2350,6 +2400,8 @@ production = {
 				NOR = {
 					has_designation = col_fortress
 					has_designation = col_habitat_fortress
+                    has_designation = col_habitat_mining
+                    has_designation = col_habitat_energy
 				}
 			}
       		
@@ -2377,6 +2429,32 @@ production = {
 					has_designation = col_habitat_fortress
 				}
 			}
+            
+            modifier = { # Max buildings = 4
+                factor = 0
+                OR = {
+                    AND = {
+                        num_buildings = { type = building_commercial_zone value >= 0 }
+                        num_buildings = { type = building_commercial_megaplex value >= 4 }
+                    }
+                    AND = {
+                        num_buildings = { type = building_commercial_zone value >= 1 }
+                        num_buildings = { type = building_commercial_megaplex value >= 3 }
+                    }
+                    AND = {
+                        num_buildings = { type = building_commercial_zone value >= 2 }
+                        num_buildings = { type = building_commercial_megaplex value >= 2 }
+                    }
+                    AND = {
+                        num_buildings = { type = building_commercial_zone value >= 3 }
+                        num_buildings = { type = building_commercial_megaplex value >= 1 }
+                    }
+                    AND = {
+                        num_buildings = { type = building_commercial_zone value >= 4 }
+                        num_buildings = { type = building_commercial_megaplex value >= 0 }
+                    }
+                }
+            }
 
 			modifier = {
 				factor = 1016
