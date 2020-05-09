@@ -1543,6 +1543,8 @@ balanced = {
 
 # 주거지
 # 채굴/발전 : 52명 / 자원지구 / 자원 모디파이어 건물 + 초 오락단지 + 8 요새
+# 채굴/발전 개선안 : 28명 / 1 주거 + 나머지 자원지구 / 자원 모디파이어 건물 + 3 전략자원 정제소 + 초 오락단지
+# => 1 주거단지랑 초오락단지 안 지으면 주거부족으로 불 들어옴. 굉장히 신경쓰임. 자원 좀 덜 먹더라도 불 안 뜨게 하는게 맞다고 생각함.
 # 정제소 : 78명 / 거주지구 / 6 멀티플렉스 + 9정제소
 # 개인적인 생각이지만, 주거지로 정제소를 만들 생각은 하지 않는 게 좋겠다. 멀티플렉스 인구낭비가 너무 심하다.
 # 요새 : 83명, 1거주 7무역지구, 전부 요새(주둔지업글)
@@ -1585,6 +1587,13 @@ production = {
             modifier = { 
                 factor = 1600
                 has_designation = col_city
+            }
+
+			# 크기가 작은 행성은 도시지구 슬롯을 마련해 둠.
+            modifier = { #  지구 건설
+                factor = 1000
+                planet_size <= 14
+                num_districts = { type = district_city value < 2 }
             }
 		}
 	}
@@ -1761,6 +1770,8 @@ production = {
 			modifier = {
 				factor = 0
 				NOR = {
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
 					has_designation = col_habitat_fortress
 					has_designation = col_habitat_refinery
 				}
@@ -1777,11 +1788,15 @@ production = {
                 has_designation = col_habitat_refinery
             }
 
-            # 요새행성은 주거지구 1개만 필요
+            # 자원, 요새행성은 주거지구 1개만 필요
             modifier = { #  지구 건설
                 factor = 1600
                 num_districts = { type = district_housing value < 1 }
-                has_designation = col_habitat_fortress
+                OR = {
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+					has_designation = col_habitat_fortress
+				}
             }
         }
     }
@@ -1807,7 +1822,7 @@ production = {
 
             # 행성특화.
             modifier = {
-                factor = 1600
+                factor = 1500
                 has_designation = col_habitat_fortress
             }
         }
@@ -1834,7 +1849,7 @@ production = {
 
             # 행성특화.
             modifier = {
-                factor = 1600
+                factor = 1500
                 has_designation = col_habitat_energy
             }
         }
@@ -1861,7 +1876,7 @@ production = {
 
             # 행성특화.
             modifier = {
-                factor = 1600
+                factor = 1500
                 has_designation = col_habitat_mining
             }
         }
@@ -2054,6 +2069,10 @@ production = {
             modifier = {
                 factor = 0
                 free_amenities > 3
+                NOR = { # 거주지는 안 지으면 직업 빨간불 뜨니까 예외.
+					has_designation = col_habitat_mining
+					has_designation = col_habitat_energy
+                }
             }
 
             modifier = {
@@ -2282,6 +2301,9 @@ production = {
                     has_designation = col_mining
                     has_designation = col_farming
                     has_designation = col_generator
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+					has_designation = col_habitat_fortress
                     has_designation = col_habitat_refinery
                 }
 			}
@@ -2384,6 +2406,9 @@ production = {
                     has_designation = col_mining
                     has_designation = col_farming
                     has_designation = col_generator
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+					has_designation = col_habitat_fortress
                     has_designation = col_habitat_refinery
                 }
 			}
@@ -2480,6 +2505,9 @@ production = {
                     has_designation = col_mining
                     has_designation = col_farming
                     has_designation = col_generator
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+					has_designation = col_habitat_fortress
                     has_designation = col_habitat_refinery
                 }
 			}
@@ -2807,8 +2835,6 @@ production = {
 			modifier = {
 				factor = 0
 				NOR = {
-                    has_designation = col_habitat_energy
-                    has_designation = col_habitat_mining
 					has_designation = col_habitat_fortress
 				}
 			}
@@ -2828,8 +2854,6 @@ production = {
 			modifier = { # 지구 건설 제한
 				factor = 0
 				NOR = {
-                    has_designation = col_habitat_energy
-                    has_designation = col_habitat_mining
 					has_designation = col_habitat_fortress
 				}
 			}
