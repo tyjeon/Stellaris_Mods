@@ -1903,8 +1903,80 @@ production = {
             }
 
             modifier = {
-            	factor = 1600
+            	factor = 1500
             }
+		}
+	}
+
+    # 소비재 건물 : 수도 전용 모디파이어.
+	building = {
+		key =  building_factory_2
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+				}
+			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
+            }
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = rare_crystals value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1500
+			}
+		}
+	}
+
+    # 소비재 건물 : 수도 전용 모디파이어.
+	building = {
+		key =  building_factory_3
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+				}
+			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
+            }
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = rare_crystals value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1500
+			}
 		}
 	}
 
@@ -1918,13 +1990,176 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_capital
+					has_designation = col_foundry
 				}
 			}
 
             modifier = {
-                factor = 1000
-                owner = { has_monthly_income = { resource = alloys value < 60 } }
+                factor = 0
+                owner = { has_monthly_income = { resource = alloys value > 60 } }
             }
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+    # 합금 건물 : 수도 전용 모디파이어.
+	building = {
+		key =  building_foundry_2
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+					has_designation = col_foundry
+				}
+			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = alloys value > 60 } }
+            }
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = volatile_motes value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+    # 합금 건물 : 수도 전용 모디파이어.
+	building = {
+		key =  building_foundry_3
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+					has_designation = col_foundry
+				}
+			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = alloys value > 60 } }
+            }
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = volatile_motes value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+    # 연구소 : 수도 전용 모디파이어.
+	building = {
+		key = building_research_lab_1
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+					has_designation = col_research
+				}
+			}
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+    # 연구소 : 수도 전용 모디파이어.
+	building = {
+		key =  building_research_lab_2
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+					has_designation = col_research
+				}
+			}
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = exotic_gases value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+    # 연구소 : 수도 전용 모디파이어.
+	building = {
+		key =  building_research_lab_3
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+					has_designation = col_research
+				}
+			}
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = exotic_gases value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
+			}
 		}
 	}
 
@@ -1938,6 +2173,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_capital
+					has_designation = col_bureau
 				}
 			}
 
@@ -1953,8 +2189,46 @@ production = {
             }
 
             modifier = {
-            	factor = 1500
+            	factor = 1600
             }
+		}
+	}
+
+    # 행정 건물 : 수도 전용 모디파이어.
+	building = {
+		key =  building_bureaucratic_2
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital
+					has_designation = col_bureau
+				}
+			}
+            
+            # 행정 한계일 때만 업그레이드
+			modifier = {
+				factor = 0
+				NOT = { owner = { empire_sprawl_over_cap > 0 } }
+			}
+
+			# 건물 슬롯이 없을 때만 업그레이드
+			modifier = {
+				factor = 0
+                free_building_slots > 0
+			}
+
+			modifier = {
+				factor = 0
+                owner = { has_monthly_income = { resource = rare_crystals value < 1 } }
+                # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1600
+			}
 		}
 	}
 
@@ -2003,8 +2277,10 @@ production = {
                 # 클론 배양소가 없으면 짓되, 있다면 극장 건설까지 기다린다.
                 OR = {
                     NOT = { has_ascension_perk = ap_engineered_evolution }
-                	has_building = building_clone_vats
-                    has_building = building_holo_theatres
+                    AND = {
+	                	has_building = building_clone_vats
+	                    has_building = building_holo_theatres
+	                }
                 }
             }
 		}
@@ -2626,12 +2902,6 @@ production = {
 				}
 			}
 
-			# 이전 단계 건물이 없어야 건설
-            modifier = {
-                factor = 0
-                num_buildings = { type = building_foundry_1 value > 0 }
-            }
-
 			# 새로 건물을 지을 수 없으면 건설
             modifier = {
                 factor = 0
@@ -2642,6 +2912,10 @@ production = {
 				factor = 0
                 owner = { has_monthly_income = { resource = volatile_motes value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
 			}
 		}
 	}
@@ -2659,12 +2933,6 @@ production = {
 				}
 			}
 
-			# 이전 단계 건물이 없어야 건설
-            modifier = {
-                factor = 0
-                num_buildings = { type = building_foundry_2 value > 0 }
-            }
-
 			# 새로 건물을 지을 수 없으면 건설
             modifier = {
                 factor = 0
@@ -2675,6 +2943,30 @@ production = {
 				factor = 0
                 owner = { has_monthly_income = { resource = volatile_motes value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+	# 합금, 소비재 모디파이어
+	building = {
+		key = building_ministry_production
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_foundry
+				}
+			}
+      
+			modifier = {
+				factor = 1600
+				num_buildings = { type = any value >= 6}
 			}
 		}
 	}
@@ -2712,12 +3004,6 @@ production = {
 				}
 			}
 
-			# 이전 단계 건물이 없어야 건설
-            modifier = {
-                factor = 0
-                num_buildings = { type = building_research_lab_1 value > 0 }
-            }
-
 			# 새로 건물을 지을 수 없으면 건설
             modifier = {
                 factor = 0
@@ -2728,6 +3014,10 @@ production = {
 				factor = 0
                 owner = { has_monthly_income = { resource = exotic_gases value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
 			}
 		}
 	}
@@ -2745,12 +3035,6 @@ production = {
 				}
 			}
 
-			# 이전 단계 건물이 없어야 건설
-            modifier = {
-                factor = 0
-                num_buildings = { type = building_research_lab_2 value > 0 }
-            }
-
 			# 새로 건물을 지을 수 없으면 건설
             modifier = {
                 factor = 0
@@ -2761,6 +3045,30 @@ production = {
 				factor = 0
                 owner = { has_monthly_income = { resource = exotic_gases value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
+			}
+		}
+	}
+
+	# 연구 모디파이어
+	building = {
+		key = building_institute
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_research
+				}
+			}
+      
+			modifier = {
+				factor = 1600
+				num_buildings = { type = any value >= 6}
 			}
 		}
 	}
@@ -2784,6 +3092,10 @@ production = {
 				factor = 0
 				NOT = { owner = { empire_sprawl_over_cap > 0 } }
 			}
+      
+			modifier = {
+				factor = 1600
+			}
 		}
 	}
 
@@ -2799,12 +3111,6 @@ production = {
 					has_designation = col_bureau
 				}
 			}
-
-			# 이전 단계 건물이 없어야 건설
-            modifier = {
-                factor = 0
-                num_buildings = { type = building_bureaucratic_1 value > 0 }
-            }
             
             # 행정 한계일 때만 업그레이드
 			modifier = {
@@ -2822,6 +3128,10 @@ production = {
 				factor = 0
                 owner = { has_monthly_income = { resource = rare_crystals value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1600
 			}
 		}
 	}
@@ -2857,15 +3167,15 @@ production = {
 					has_designation = col_habitat_fortress
 				}
 			}
-      
-			modifier = {
-				factor = 1000
-			}
 
 			modifier = {
 				factor = 0
                 owner = { has_monthly_income = { resource = volatile_motes value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
+			}
+      
+			modifier = {
+				factor = 1000
 			}
 		}
 	}
