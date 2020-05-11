@@ -1882,6 +1882,33 @@ production = {
         }
     }
 
+	# 아콜로지 주조 아콜로지
+    district = {
+        key = district_arcology_arms_industry
+        weight = {
+            weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_ecu_foundry
+				}
+			}
+
+            modifier = {
+                factor = 0
+				free_housing >= 3
+				free_jobs >= 3
+            }
+
+            # 행성특화.
+            modifier = {
+                factor = 1500
+                has_designation = col_ecu_foundry
+            }
+        }
+    }
+
     ### 건물 ###
 
     # 소비재 건물 : 수도 전용 모디파이어.
@@ -2247,6 +2274,7 @@ production = {
 					has_designation = col_foundry
 					has_designation = col_research
 					has_designation = col_bureau
+					has_designation = col_ecu_foundry
 				}
 			}
 
@@ -2269,6 +2297,7 @@ production = {
 					has_designation = col_generator
 					has_designation = col_farming
 					has_designation = col_foundry
+					has_designation = col_ecu_foundry
 				}
 			}
 
@@ -2303,6 +2332,7 @@ production = {
 					has_designation = col_bureau
 					has_designation = col_habitat_mining
 					has_designation = col_habitat_energy
+					has_designation = col_ecu_foundry
 				}
 			}
 
@@ -2978,6 +3008,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_foundry
+					has_designation = col_ecu_foundry
 				}
 			}
       
@@ -2998,6 +3029,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_foundry
+					has_designation = col_ecu_foundry
 				}
 			}
 
@@ -3029,6 +3061,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_foundry
+					has_designation = col_ecu_foundry
 				}
 			}
 
@@ -3060,6 +3093,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_foundry
+					has_designation = col_ecu_foundry
 				}
 			}
       
