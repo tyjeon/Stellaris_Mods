@@ -2499,72 +2499,6 @@ production = {
 		}
 	}
 
-	# 상업 지구
-	building = {
-		key = building_commercial_zone
-		weight = {
-			weight = 1
-
-			modifier = {
-				factor = 0
-                NOR = {
-					#has_designation = col_mining
-					#has_designation = col_farming
-					#has_designation = col_generator
-					has_designation = col_habitat_refinery
-                }
-			}
-
-			# 정제소 행성은 상업지구부터 짓기 시작해야 함.
-			modifier = {
-				factor = 1600
-				free_jobs <= 2
-				has_designation = col_habitat_refinery
-			}
-
-			# 일반 행성은 자원지구로 일자리를 먼저 채움.
-			modifier = {
-				factor = 1600
-				free_jobs <= 2
-				free_district_slots = 0
-
-				OR = {
-					has_designation = col_mining
-					has_designation = col_farming
-					has_designation = col_generator
-				}
-			}
-		}
-	}
-
-	# 메가플렉스
-	building = {
-		key = building_commercial_megaplex
-		weight = {
-			weight = 1
-
-			modifier = {
-				factor = 0
-                NOR = {
-					has_designation = col_mining
-					has_designation = col_farming
-					has_designation = col_generator
-					has_designation = col_habitat_refinery
-                }
-			}
-			
-            modifier = {
-                factor = 0
-                owner = { has_monthly_income = { resource = rare_crystals value < 1 } }
-                # exotic_gases volatile_motes rare_crystals
-            }
-
-			modifier = {
-				factor = 1600
-			}
-		}
-	}
-
 	# 전략자원
 	building = {
 		key = building_crystal_plant
@@ -2585,7 +2519,7 @@ production = {
 			}
 
 			modifier = {
-				factor = 250
+				factor = 100
 			}
 
 			# 합성수정은 내정에 쓰일 일이 더 많으므로 같은 weight일 때 우선함.
@@ -2664,10 +2598,65 @@ production = {
                 owner = { has_monthly_income = { resource = rare_crystals value < 18 } }
 			}
 
-			modifier = {
-				factor = 1.1
+            modifier = {
+                factor = 1.1
                 owner = { has_monthly_income = { resource = rare_crystals value < 20 } }
-			}
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 25 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 30 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 35 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 40 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 45 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 50 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 70 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 90 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 110 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 130 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = rare_crystals value < 150 } }
+            }
 		}
 	}
 
@@ -2763,10 +2752,65 @@ production = {
                 owner = { has_monthly_income = { resource = volatile_motes value < 18 } }
 			}
 
-			modifier = {
-				factor = 1.1
+            modifier = {
+                factor = 1.1
                 owner = { has_monthly_income = { resource = volatile_motes value < 20 } }
-			}
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 25 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 30 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 35 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 40 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 45 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 50 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 70 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 90 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 110 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 130 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = volatile_motes value < 150 } }
+            }
 		}
 	}
 
@@ -2866,6 +2910,61 @@ production = {
 				factor = 1.1
                 owner = { has_monthly_income = { resource = exotic_gases value < 20 } }
 			}
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 25 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 30 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 35 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 40 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 45 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 50 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 70 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 90 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 110 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 130 } }
+            }
+
+            modifier = {
+                factor = 1.1
+                owner = { has_monthly_income = { resource = exotic_gases value < 150 } }
+            }
 		}
 	}
 
