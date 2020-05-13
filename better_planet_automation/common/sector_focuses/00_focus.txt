@@ -1576,6 +1576,7 @@ production = {
 				}
 			}
 
+
 			# 주거, 직업 중 하나라도 부족해야 건설.
 			modifier = {
 				factor = 0
@@ -1587,13 +1588,6 @@ production = {
             modifier = { 
                 factor = 1600
                 has_designation = col_city
-            }
-
-			# 크기가 작은 행성은 도시지구 슬롯을 마련해 둠.
-            modifier = { #  지구 건설
-                factor = 1000
-                planet_size <= 14
-                num_districts = { type = district_city value < 2 }
             }
 		}
 	}
@@ -1629,6 +1623,12 @@ production = {
             modifier = { 
                 factor = 1600
                 has_designation = col_generator
+            }
+
+            # 자원 부족 시 도시지구보다 우선함.
+            modifier = { 
+                factor = 5
+                owner = { has_monthly_income = { resource = energy value < 5 } }
             }
 
             # 자원 부족 시 도시지구보다 우선함.
@@ -1694,6 +1694,12 @@ production = {
 
             # 자원 부족 시 도시지구보다 우선함.
             modifier = { 
+                factor = 5
+                owner = { has_monthly_income = { resource = energy value < 5 } }
+            }
+
+            # 자원 부족 시 도시지구보다 우선함.
+            modifier = { 
                 factor = 1.1
                 owner = { has_monthly_income = { resource = energy value < 50 } }
             }
@@ -1755,8 +1761,32 @@ production = {
 
             # 자원 부족 시 도시지구보다 우선함.
             modifier = { 
-                factor = 2
+                factor = 5
                 owner = { has_monthly_income = { resource = energy value < 5 } }
+            }
+
+            # 자원 부족 시 도시지구보다 우선함.
+            modifier = { 
+                factor = 1.1
+                owner = { has_monthly_income = { resource = energy value < 10 } }
+            }
+
+            # 자원 부족 시 도시지구보다 우선함.
+            modifier = { 
+                factor = 1.1
+                owner = { has_monthly_income = { resource = energy value < 30 } }
+            }
+
+            # 자원 부족 시 도시지구보다 우선함.
+            modifier = { 
+                factor = 1.1
+                owner = { has_monthly_income = { resource = minerals value < 50 } }
+            }
+
+            # 자원 부족 시 도시지구보다 우선함.
+            modifier = { 
+                factor = 1.1
+                owner = { has_monthly_income = { resource = minerals value < 100 } }
             }
 		}
 	}
@@ -1779,24 +1809,22 @@ production = {
 
             modifier = {
                 factor = 0
-                free_housing >= 2
-            }
-
-            # 행성특화.
-            modifier = {
-                factor = 1600
-                has_designation = col_habitat_refinery
+                free_housing >= 3
             }
 
             # 자원, 요새행성은 주거지구 1개만 필요
             modifier = { #  지구 건설
-                factor = 1600
-                num_districts = { type = district_housing value < 1 }
+                factor = 0
+                num_districts = { type = district_hab_housing value >= 1 }
                 OR = {
 					has_designation = col_habitat_energy
 					has_designation = col_habitat_mining
 					has_designation = col_habitat_fortress
 				}
+            }
+
+            modifier = {
+                factor = 1600
             }
         }
     }
@@ -1913,30 +1941,6 @@ production = {
 
     # 소비재 건물 : 수도 전용 모디파이어.
 	building = {
-		key = building_factory_1
-		weight = {
-			weight = 1
-
-			modifier = {
-				factor = 0
-				NOR = {
-					has_designation = col_capital
-				}
-			}
-
-            modifier = {
-                factor = 0
-                owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
-            }
-
-            modifier = {
-            	factor = 1500
-            }
-		}
-	}
-
-    # 소비재 건물 : 수도 전용 모디파이어.
-	building = {
 		key =  building_factory_2
 		weight = {
 			weight = 1
@@ -1945,6 +1949,7 @@ production = {
 				factor = 0
 				NOR = {
 					has_designation = col_capital
+
 				}
 			}
 
@@ -2024,6 +2029,7 @@ production = {
             modifier = {
                 factor = 0
                 owner = { has_monthly_income = { resource = alloys value > 60 } }
+                NOT = { has_designation = col_foundry }
             }
       
 			modifier = {
@@ -2098,26 +2104,6 @@ production = {
 				factor = 0
                 owner = { has_monthly_income = { resource = volatile_motes value < 1 } }
                 # exotic_gases volatile_motes rare_crystals
-			}
-      
-			modifier = {
-				factor = 1000
-			}
-		}
-	}
-
-    # 연구소 : 수도 전용 모디파이어.
-	building = {
-		key = building_research_lab_1
-		weight = {
-			weight = 1
-
-			modifier = {
-				factor = 0
-				NOR = {
-					has_designation = col_capital
-					has_designation = col_research
-				}
 			}
       
 			modifier = {
@@ -2204,15 +2190,10 @@ production = {
 				}
 			}
 
-			# 행정특화 행성이 있으면 짓지 않음.
-            modifier = {
-                factor = 0
-                any_owned_planet = { has_designation = col_bureau }
-            }
-
+            # 행정한계가 되기 전에 미리 건설.
             modifier = {
             	factor = 0
-				NOT = { owner = { empire_sprawl_over_cap > 0 } }
+				NOT = { owner = { empire_sprawl_over_cap > -10 } }
             }
 
             modifier = {
@@ -2235,10 +2216,10 @@ production = {
 				}
 			}
             
-            # 행정 한계일 때만 업그레이드
+            # 행정한계가 되기 전에 미리 건설.
 			modifier = {
 				factor = 0
-				NOT = { owner = { empire_sprawl_over_cap > 0 } }
+				NOT = { owner = { empire_sprawl_over_cap > -10 } }
 			}
 
 			# 건물 슬롯이 없을 때만 업그레이드
@@ -2324,6 +2305,7 @@ production = {
 			modifier = {
 				factor = 0
 				NOR = {
+					has_designation = col_capital
 					has_designation = col_mining
 					has_designation = col_generator
 					has_designation = col_farming
@@ -2346,8 +2328,17 @@ production = {
 			}
 
             modifier = {
+                factor = 0
+                free_amenities > 5
+            }
+
+            modifier = {
+                factor = 0
+                num_buildings = { type = any value < 2}
+            }
+
+            modifier = {
                 factor = 1500
-                num_buildings = { type = any value >= 2 }
             }
 		}
 	}
@@ -2525,6 +2516,45 @@ production = {
 
             modifier = {
                 factor = 1400
+            }
+		}
+	}
+
+    # 소비재 건물 1 : 수도 전용 모디파이어 포함.
+    # 업그레이드를 넣어 두니 해당되는 행성이 동시에 업그레이드를 해서, 업그레이드는 자동으로 하지 않음.
+	building = {
+		key = building_factory_1
+		weight = {
+			weight = 1
+
+			modifier = {
+				factor = 0
+				NOR = {
+					has_designation = col_capital # 이 부분만 수도 관련 코드.
+					has_designation = col_mining
+					has_designation = col_generator
+					has_designation = col_farming
+				}
+			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
+            }
+
+            # 1개만 짓는다.
+            modifier = {
+                factor = 0
+                num_buildings = { type = building_factory_1 value > 0}
+                OR = {
+					has_designation = col_mining
+					has_designation = col_generator
+					has_designation = col_farming
+				}
+            }
+
+            modifier = {
+            	factor = 1500
             }
 		}
 	}
@@ -2709,7 +2739,7 @@ production = {
 			}
 
 			modifier = {
-				factor = 250
+				factor = 100
 			}
 
 			modifier = {
@@ -2863,7 +2893,7 @@ production = {
 			}
 
 			modifier = {
-				factor = 250
+				factor = 100
 			}
 			
 			modifier = {
@@ -3212,19 +3242,43 @@ production = {
 		weight = {
 			weight = 1
 
+			# 1차자원 행성이 지을 거 없을 때 또는 행정행성이 없을 경우를 대비해 하나씩 지어 줌.
 			modifier = {
 				factor = 0
 				NOR = {
+					has_designation = col_mining
+					has_designation = col_generator
+					has_designation = col_farming
 					has_designation = col_bureau
 				}
 			}
             
-            # 행정 한계일 때만 건설
+            # 행정한계가 되기 전에 미리 건설.
             # NOT으로 묶은 이유는 factor가 0으로 두어야 weight도 0이 되어 건설을 하지 않기 때문
 			modifier = {
 				factor = 0
-				NOT = { owner = { empire_sprawl_over_cap > 0 } }
+				NOT = { owner = { empire_sprawl_over_cap > -10 } }
 			}
+
+            # 1개만 짓는다.
+            modifier = {
+                factor = 0
+                num_buildings = { type = building_bureaucratic_1 value > 0}
+				OR = {
+					has_designation = col_mining
+					has_designation = col_generator
+					has_designation = col_farming
+				}
+            }
+
+            modifier = {
+                factor = 0.5
+				OR = {
+					has_designation = col_mining
+					has_designation = col_generator
+					has_designation = col_farming
+				}
+            }
       
 			modifier = {
 				factor = 1600
@@ -3248,7 +3302,7 @@ production = {
             # 행정 한계일 때만 업그레이드
 			modifier = {
 				factor = 0
-				NOT = { owner = { empire_sprawl_over_cap > 0 } }
+				NOT = { owner = { empire_sprawl_over_cap > -10 } }
 			}
 
 			# 건물 슬롯이 없을 때만 업그레이드
