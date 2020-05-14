@@ -1953,16 +1953,16 @@ production = {
 				}
 			}
 
-            modifier = {
-                factor = 0
-                owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
-            }
-
 			# 건물 슬롯이 없을 때만 업그레이드
 			modifier = {
 				factor = 0
                 free_building_slots > 0
 			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = consumer_goods value > 8 } }
+            }
 
 			modifier = {
 				factor = 0
@@ -1989,16 +1989,16 @@ production = {
 				}
 			}
 
-            modifier = {
-                factor = 0
-                owner = { has_monthly_income = { resource = consumer_goods value > 5 } }
-            }
-
 			# 건물 슬롯이 없을 때만 업그레이드
 			modifier = {
 				factor = 0
                 free_building_slots > 0
 			}
+
+            modifier = {
+                factor = 0
+                owner = { has_monthly_income = { resource = consumer_goods value > 8 } }
+            }
 
 			modifier = {
 				factor = 0
@@ -2573,9 +2573,19 @@ production = {
                     has_designation = col_generator
 					has_designation = col_habitat_energy
 					has_designation = col_habitat_mining
-					has_designation = col_habitat_fortress
                     has_designation = col_habitat_refinery
                 }
+			}
+
+			# 거주지 승천인 공허 태생을 선택했을 때 주거지가 한 번에 전략자원 건물을 짓는 상황 방지
+			modifier = {
+				factor = 0
+                OR = {
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+                    has_designation = col_habitat_refinery
+                }
+                free_jobs >= 2
 			}
 
 			modifier = {
@@ -2733,9 +2743,19 @@ production = {
                     has_designation = col_generator
 					has_designation = col_habitat_energy
 					has_designation = col_habitat_mining
-					has_designation = col_habitat_fortress
                     has_designation = col_habitat_refinery
                 }
+			}
+
+			# 거주지 승천인 공허 태생을 선택했을 때 주거지가 한 번에 전략자원 건물을 짓는 상황 방지
+			modifier = {
+				factor = 0
+                OR = {
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+                    has_designation = col_habitat_refinery
+                }
+                free_jobs >= 2
 			}
 
 			modifier = {
@@ -2887,9 +2907,19 @@ production = {
                     has_designation = col_generator
 					has_designation = col_habitat_energy
 					has_designation = col_habitat_mining
-					has_designation = col_habitat_fortress
                     has_designation = col_habitat_refinery
                 }
+			}
+
+			# 거주지 승천인 공허 태생을 선택했을 때 주거지가 한 번에 전략자원 건물을 짓는 상황 방지
+			modifier = {
+				factor = 0
+                OR = {
+					has_designation = col_habitat_energy
+					has_designation = col_habitat_mining
+                    has_designation = col_habitat_refinery
+                }
+                free_jobs >= 2
 			}
 
 			modifier = {
