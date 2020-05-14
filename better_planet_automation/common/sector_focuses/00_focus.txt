@@ -1925,8 +1925,7 @@ production = {
 
             modifier = {
                 factor = 0
-				free_housing >= 3
-				free_jobs >= 3
+				free_jobs >= 90 # 사무원 직업 때문에 주조 아콜로지를 짓지 않는 상황 대비.
             }
 
             # 행성특화.
@@ -3097,6 +3096,13 @@ production = {
             modifier = {
                 factor = 0
                 free_building_slots > 0
+            }
+
+			# 합금 건물 업그레이드 효율 > 주조 아콜로지 효율이기 때문에 아콜로지 먼저 건설.
+            modifier = {
+                factor = 0
+                has_designation = col_ecu_foundry
+            	free_district_slots = 0
             }
 
 			modifier = {
